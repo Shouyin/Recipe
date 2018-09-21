@@ -1,0 +1,33 @@
+{% load static %}
+<html>
+    <head>
+        <title>Recipe</title>
+        <link rel="stylesheet" href="{% static "recipe.css" %}" type="text/css"/>
+    </head>
+    <body>
+        <div class="top-container">
+            <h1>Recipe Finder</h1>
+        </div>
+        <div class="wraper">
+            <form id="handin-form">
+                <div class="container">
+                    <textarea id="fridge-textarea">
+                        fridge
+                    </textarea>
+                </div>
+                <div class="container">
+                    <textarea id="recipe-textarea">
+                        recipe
+                    </textarea>
+                </div>
+            </form>
+            <button id="find-button" onclick="recipeInPage();">
+                find recipe
+            </button>
+            <p id="result-p">
+                result
+            </p>
+            <script src="{% static "recipe.js" %}"></script>
+        </div>
+    </body>
+</html>
