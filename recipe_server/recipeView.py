@@ -5,6 +5,7 @@ from . import settings
 from .scripts import logic
 import os
 import urllib
+import json
 
 def recipe_html(request):
     print(os.path.join(settings.BASE_DIR, "recipe_server/static"))
@@ -12,7 +13,10 @@ def recipe_html(request):
 
 
 def recipe_api(request):
-    fridge = urllib.parse.unquote(request.GET["fridge"])
-    recipe = urllib.parse.unquote(request.GET["recipe"])
-    print(fridge)
-    return http.HttpResponse(logic.main(fridge, recipe))
+    fridge = request.GET["fridge"]
+    reconstructed_string = ""
+    for i in json.loads(fridge):
+        reconstructed_string += i + "\n"
+    recipe = request.GET["recipe"]
+    print(reconstructed_string)
+    return http.HttpResponse(logic.main(reconstructed_string, recipe))

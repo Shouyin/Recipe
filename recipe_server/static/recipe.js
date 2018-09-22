@@ -4,15 +4,19 @@ var resultp = document.getElementById("result-p");
 
 var REQUEST_URL = "recipeapi"
 
-console.log(textareaFridge);
-
 var recipeInPage = () => {
     var newRequest = new XMLHttpRequest();
     newRequest.onreadystatechange = () => {
         resultp.innerHTML = newRequest.responseText;
     }
     
-    var requestUrl = REQUEST_URL + "?fridge=" + textareaFridge.innerHTML + "&recipe=" + textareaRecipe.innerHTML;
+    var gotFridge = textareaFridge.value;
+    gotFridge = gotFridge.split("\n");
+    
+    var gotRecipe = textareaRecipe.value;
+    gotRecipe = gotRecipe.replace("\n", "");
+    
+    var requestUrl = REQUEST_URL + "?fridge=" + JSON.stringify(gotFridge) + "&recipe=" + gotRecipe;
     
     newRequest.open("GET", requestUrl, true);
     newRequest.send();

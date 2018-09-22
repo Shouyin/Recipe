@@ -127,6 +127,8 @@ def filter_fridge(fridge):
 
 
 def date_to_timestamp(date_str):
+    if date_str[-1] == '"':
+        date_str = date_str.replace('"', '')
     return time.mktime(time.strptime(date_str, "%d/%m/%Y"))
 
 
